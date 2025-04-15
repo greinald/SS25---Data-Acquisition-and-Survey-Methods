@@ -1,0 +1,101 @@
+Age,Gender,Academic_Program,Hours_Digital_Use,Tech_Improved_Academics,Social_Media_Impact
+24,Female,Engineering,7.7,Yes,Mixed
+32,Female,Science,7,Neutral,None
+28,Female,Science,5.5,Yes,Mixed
+25,Female,Engineering,5.4,Yes,Mixed
+24,Male,Engineering,2.7,Neutral,Negative
+28,Male,Engineering,2,Neutral,None
+28,Male,Business,5.3,Yes,Mixed
+21,Male,Science,3.3,No,Positive
+25,Female,Business,4.9,Yes,Positive
+20,Male,Engineering,3.9,Yes,Negative
+19,Female,Science,1.4,Yes,Mixed
+29,Female,Business,5.7,No,None
+23,Male,Business,4.2,No,Positive
+19,Male,Engineering,5.2,No,Negative
+18,Female,Science,3.2,No,Negative
+29,Male,Engineering,4.3,Yes,None
+29,Male,Science,8.1,Yes,Mixed
+34,Male,Social Sciences,5.3,Yes,Mixed
+27,Male,Arts,6.1,Yes,Negative
+33,Female,Arts,2.5,Yes,Negative
+32,Female,Arts,9.8,Neutral,Negative
+32,Female,Engineering,8.7,Yes,Positive
+29,Female,Social Sciences,7.7,Yes,Mixed
+20,Female,Science,6.7,Yes,Mixed
+22,Male,Business,5,No,None
+24,Female,Science,5.9,No,None
+26,Female,Business,7.1,Yes,Negative
+24,Female,Science,3.7,Yes,Mixed
+21,Female,Social Sciences,4.1,No,None
+31,Male,Business,1.7,Yes,Mixed
+26,Male,Engineering,3.5,Neutral,Negative
+19,Male,Science,8.3,No,Negative
+32,Male,Science,4.3,Yes,Positive
+24,Female,Business,4.4,Yes,None
+29,Female,Engineering,5.6,Neutral,Mixed
+25,Male,Engineering,1.8,Yes,Negative
+32,Female,Social Sciences,6.9,Yes,Mixed
+20,Male,Engineering,7.5,Neutral,Mixed
+31,Male,Engineering,5.8,Neutral,Negative
+34,Male,Engineering,8.3,Neutral,Positive
+21,Male,Arts,2.3,No,Mixed
+25,Female,Social Sciences,8.7,Yes,Negative
+21,Male,Science,3.5,Yes,Mixed
+19,Female,Business,2.4,No,Negative
+23,Female,Science,4.5,Yes,Mixed
+27,Male,Social Sciences,8.7,Yes,Negative
+21,Other,Business,5,Neutral,Negative
+29,Other,Social Sciences,3.1,Yes,Mixed
+19,Male,Engineering,2.4,Yes,Negative
+27,Female,Business,4.8,Yes,Positive
+21,Male,Engineering,1,Yes,Positive
+31,Male,Science,2.4,Yes,Mixed
+33,Male,Science,8.1,Yes,Mixed
+32,Female,Business,7.6,Yes,Mixed
+25,Female,Business,4.7,No,Negative
+31,Male,Social Sciences,4.1,No,Positive
+25,Male,Social Sciences,5.1,Yes,Positive
+33,Female,Engineering,9.7,Neutral,Negative
+30,Male,Business,5.8,Yes,Negative
+32,Male,Science,6.8,Yes,Negative
+30,Female,Social Sciences,4.6,Neutral,Negative
+26,Other,Social Sciences,5.1,Yes,None
+32,Male,Science,6.3,Neutral,Negative
+30,Female,Social Sciences,5.3,Yes,Negative
+18,Female,Engineering,1.2,Neutral,Mixed
+24,Male,Business,7.6,Yes,Negative
+26,Female,Science,3.8,Neutral,Mixed
+18,Male,Business,9.2,Yes,Mixed
+29,Female,Social Sciences,6.4,Neutral,None
+25,Female,Social Sciences,5.1,Yes,Positive
+28,Female,Science,5.9,Yes,None
+34,Male,Engineering,4.8,Neutral,Negative
+25,Female,Arts,4,Yes,Negative
+20,Male,Science,5.4,No,Negative
+20,Male,Arts,6.8,No,None
+18,Male,Arts,4.1,Yes,Negative
+22,Female,Engineering,3.8,No,Negative
+27,Female,Arts,4.3,Yes,Mixed
+24,Male,Arts,6.9,Neutral,Negative
+26,Female,Engineering,7.9,Yes,Positive
+24,Male,Arts,5.7,Yes,Positive
+26,Female,Arts,6.2,Neutral,Positive
+25,Male,Arts,3.7,Neutral,Positive
+29,Female,Science,6.8,Yes,Positive
+19,Male,Science,6.1,No,Mixed
+18,Female,Science,3.6,Yes,Positive
+33,Male,Engineering,1.4,Yes,Negative
+22,Male,Social Sciences,2.6,Yes,Mixed
+20,Male,Arts,3.7,Yes,Negative
+29,Female,Arts,7.3,Yes,Mixed
+25,Female,Engineering,8.1,Yes,Positive
+20,Male,Arts,4.1,Neutral,Positive
+18,Female,Science,4.2,Neutral,Positive
+20,Female,Social Sciences,5.5,No,Positive
+22,Female,Business,5,Yes,Negative
+32,Female,Arts,6.9,Yes,Positive
+31,Male,Science,4,Neutral,Positive
+20,Male,Business,6.9,No,Positive
+18,Female,Social Sciences,4.5,Yes,Negative
+22,Female,Business,6.7,Neutral,Negative

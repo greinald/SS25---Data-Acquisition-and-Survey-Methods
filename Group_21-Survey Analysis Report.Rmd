@@ -1,0 +1,191 @@
+---
+title: "Web scraping and basic data analysis"
+author: "Greinald Pappa (12046752), Arjol Pançi(12347494)"
+date: "Apr. 13, 2025 (Assignment_1.Rmd)"
+output:
+  bookdown::pdf_document2:
+    toc: true
+    number_sections: true
+    citation_package: natbib
+    latex_engine: xelatex
+bibliography: literature.bib
+biblio-style: humannat
+include-before: \pagebreak
+editor_options:
+  markdown:
+    wrap: 72
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+```{r setup, include=FALSE}
+# Configure knitr options and suppress warnings/messages
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+
+# Load required libraries
+library(tidyverse)      # For data manipulation and visualization
+library(tidytext)       # For handling textual data
+library(wordcloud)      # For generating word clouds
+library(tm)             # For text mining preprocessing
+library(ggplot2)        # For customized plots
+library(RColorBrewer)   # For aesthetic color palettes in word clouds
+
+# Set system locale to German for correct date parsing (if needed)
+Sys.setlocale("LC_TIME", "de_DE.UTF-8")
+
+```
+
+
+## Introduction
+
+This report investigates how technology impacts student life by analyzing survey data. We focus on demographic patterns, digital usage, text responses, and statistical associations. The goal is to draw both descriptive and inferential conclusions on how students interact with technology in their daily academic routines.
+
+## Data Preparation
+
+```{r}
+# Load survey data from CSV file
+survey_data <- read.csv('survey_data.csv', stringsAsFactors = FALSE)
+
+# Convert key categorical variables into factor types for analysis
+survey_data$Gender <- factor(survey_data$Gender,
+                             levels = c("Woman", "Man", "Non-binary", "Prefer not to say"))
+survey_data$Age <- factor(survey_data$Age,
+                          levels = c("18-21", "22-25", "26-30", "30+"))
+
+# Convert digital usage column from character to numeric
+survey_data$Hours_Digital_Use <- as.numeric(survey_data$Hours_Digital_Use)
+```
+
+We began by loading the data and converting relevant columns to the correct types. Factor levels were manually specified to ensure consistent ordering in plots and analyses.
+
+## Exploratory Data Analysis
+
+We begin by examining basic demographics and behavioral patterns among students.
+
+```{r}
+# Plot gender distribution
+ggplot(survey_data, aes(x = Gender)) +
+  geom_bar(fill = '#4682B4', color = 'black') +
+  theme_minimal(base_size = 14) +
+  labs(title = "Gender Distribution of Respondents", x = "Gender", y = "Count")
+```
+
+```{r}
+# Plot age group distribution
+ggplot(survey_data, aes(x = Age)) +
+  geom_bar(fill = '#2E8B57', color = 'black') +
+  theme_minimal(base_size = 14) +
+  labs(title = "Age Distribution of Participants", x = "Age Group", y = "Count")
+```
+
+```{r}
+# Count and display academic program frequencies
+program_counts <- survey_data %>%
+  count(Academic_Program, sort = TRUE)
+
+# Display as a table
+knitr::kable(program_counts, caption = "Frequency of Academic Programs")
+```
+
+```{r}
+# Histogram of daily device usage in hours
+ggplot(survey_data, aes(x = Hours_Digital_Use)) +
+  geom_histogram(binwidth = 1, fill = '#FF7F50', color = 'black') +
+  theme_minimal(base_size = 14) +
+  labs(title = "Daily Use of Digital Devices", x = "Hours per Day", y = "Number of Students")
+```
+
+These plots provide insight into the student population, highlighting usage patterns and academic program representation.
+
+## Textual Analysis
+
+We now analyze open-ended responses to questions about the academic benefits of technology and the effects of social media.
+
+```{r}
+# Preprocess and clean text related to academic improvement
+academics_corpus <- Corpus(VectorSource(survey_data$Tech_Improved_Academics)) %>%
+  tm_map(removePunctuation) %>%
+  tm_map(removeNumbers) %>%
+  tm_map(content_transformer(tolower)) %>%
+  tm_map(removeWords, stopwords("en"))
+
+# Generate a word cloud for academic improvements
+wordcloud(academics_corpus, max.words = 100, random.order = FALSE,
+          colors = brewer.pal(8, "Dark2"))
+```
+
+```{r}
+# Preprocess and clean text related to social media impact
+socialmedia_corpus <- Corpus(VectorSource(survey_data$Social_Media_Impact)) %>%
+  tm_map(removePunctuation) %>%
+  tm_map(removeNumbers) %>%
+  tm_map(content_transformer(tolower)) %>%
+  tm_map(removeWords, stopwords("en"))
+
+# Generate a word cloud for social media impact
+wordcloud(socialmedia_corpus, max.words = 100, random.order = FALSE,
+          colors = brewer.pal(8, "Set3"))
+```
+
+The word clouds provide a visual summary of key terms in student feedback. Words like "helped", "easier", and "distraction" give insight into student perspectives.
+
+## Descriptive Inference
+
+We compute key summary statistics to better understand the range and average of digital usage.
+
+```{r}
+# Calculate mean, median, SD, min, and max for daily usage
+summary_hours <- survey_data %>% summarise(
+  Mean = mean(Hours_Digital_Use, na.rm=TRUE),
+  Median = median(Hours_Digital_Use, na.rm=TRUE),
+  SD = sd(Hours_Digital_Use, na.rm=TRUE),
+  Min = min(Hours_Digital_Use, na.rm=TRUE),
+  Max = max(Hours_Digital_Use, na.rm=TRUE)
+)
+
+# Display the summary table
+knitr::kable(summary_hours, caption = "Summary of Hours Spent on Digital Devices")
+```
+
+This table confirms that while most students use digital devices extensively, there’s considerable variation between individuals.
+
+## Analytic Inference
+
+We now test for significant differences and associations using statistical methods.
+
+```{r}
+# Filter for binary gender responses and remove NA values
+usages_gender <- survey_data %>%
+  filter(Gender %in% c("Man", "Woman")) %>%
+  drop_na(Hours_Digital_Use)
+
+# Perform a t-test to compare usage between men and women
+usage_test <- t.test(Hours_Digital_Use ~ Gender, data = usages_gender)
+
+# Show t-test results
+usage_test
+```
+
+The t-test checks whether gender is a significant factor in digital usage. A non-significant p-value would suggest no strong difference.
+
+```{r}
+# Create contingency table between age and academic program
+age_program_table <- table(survey_data$Age, survey_data$Academic_Program)
+
+# Perform chi-square test of independence
+age_program_chisq <- chisq.test(age_program_table)
+
+# Show chi-square test results
+age_program_chisq
+```
+
+The chi-square test evaluates whether age group and academic program are independent. A significant result implies a relationship between them.
+
+## Conclusion
+
+This report shows that digital technology is central to student life, with high daily usage and mixed impacts on academic performance. Gender does not appear to significantly influence device use, but academic program and age group are associated. Open-ended responses show that students acknowledge both the benefits and drawbacks of technology in their academic experience. These insights can inform future educational strategies that consider how students use and perceive technology in learning environments.
+```
+
